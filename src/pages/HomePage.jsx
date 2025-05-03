@@ -145,7 +145,7 @@ const HomePage = () => {
                 variant="contained"
                 size="large"
                 sx={{
-                  px: 6,
+                  px: 2,
                   py: 1.5,
                   fontSize: '1.1rem',
                   borderRadius: '25px',
@@ -158,6 +158,25 @@ const HomePage = () => {
                 }}
               >
                 Verify Now
+              </AnimatedButton>
+              <AnimatedButton
+                variant="contained"
+                size="large"
+                sx={{
+                  px: 3,
+                  marginLeft: 2,
+                  py: 1.5,
+                  fontSize: '1.1rem',
+                  borderRadius: '25px',
+                  bgcolor: 'rgba(255,255,255,0.9)',
+                  color: 'black',
+                  '&:hover': {
+                    bgcolor: 'rgb(73, 0, 141)',
+                    color: 'white',
+                  }
+                }}
+              >
+                Sign Up
               </AnimatedButton>
             </Container>
           </ContentWrapper>

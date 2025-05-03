@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Sidebar from "./components/Sidebar"; // Ensure this path is correct
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import img2 from "./assets/img2.jpg"; // Ensure the path is correct
 // Correct component imports
 import HomePage from "./pages/HomePage";
-
+import LoginPage from './pages/LoginPage';
 const App = () => {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
@@ -26,6 +25,9 @@ const App = () => {
         >
           <Routes>
             <Route path="/" element={<HomePage />} />
+          </Routes>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </div>
       </div>
