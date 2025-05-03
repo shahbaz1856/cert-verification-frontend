@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from "react";
+import Sidebar from "./components/Sidebar";
 
-function App() {
+const App = () => {
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
+
   return (
-    <div>
-      <h1>Cert Verification SaaS App</h1>
+    <div style={{ display: "flex" }}>
+      <Sidebar isExpanded={isSidebarExpanded} setIsExpanded={setIsSidebarExpanded} />
+
+      <div
+        style={{
+          flexGrow: 1,
+          transition: "margin-left 0.3s",
+          marginLeft: isSidebarExpanded ? 200 : 60,
+          padding: 20,
+        }}
+      >
+        <h1>Welcome to the App!</h1>
+        <p>This is your main content area.</p>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
