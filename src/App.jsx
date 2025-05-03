@@ -14,6 +14,7 @@ const App = () => {
           transition: "margin-left 0.3s",
           marginLeft: isSidebarExpanded ? 200 : 60,
           padding: 20,
+          backgroundColor: "aa00ff",
         }}
       >
         <h1>Welcome to the App!</h1>

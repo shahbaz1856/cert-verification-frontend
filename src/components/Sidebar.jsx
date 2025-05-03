@@ -1,12 +1,16 @@
 import React from "react";
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import { Home, VerifiedUser, Login } from "@mui/icons-material";
+import { Drawer, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import { Home, VerifiedUser, Login, Person } from "@mui/icons-material"; // Import Person icon for Profile
+
+// Sidebar Item Component for better readability and reusability
+const SidebarItem = React.memo(({ icon, text, isExpanded }) => (
+  <ListItem button>
+    <ListItemIcon sx={{ color: "white", minWidth: 40 }}>
+      {icon}
+    </ListItemIcon>
+    {isExpanded && <ListItemText primary={text} />}
+  </ListItem>
+));
 
 const Sidebar = ({ isExpanded, setIsExpanded }) => {
   const drawerWidth = isExpanded ? 200 : 60;
@@ -14,39 +18,26 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
   return (
     <Drawer
       variant="permanent"
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
+      onMouseEnter={() => setIsExpanded(true)} // Expand on hover
+      onMouseLeave={() => setIsExpanded(false)} // Collapse on mouse leave
       PaperProps={{
         sx: {
           width: drawerWidth,
-          transition: "width 0.3s",
+          transition: "width 0.3s", // Smooth transition for resizing
           overflowX: "hidden",
-          backgroundColor: "#2c3e50",
+          backgroundColor: "#4a148c",
           color: "#fff",
         },
       }}
     >
       <List>
-        <ListItem button>
-          <ListItemIcon sx={{ color: "#fff", minWidth: 40 }}>
-            <Home />
-          </ListItemIcon>
-          {isExpanded && <ListItemText primary="Home" />}
-        </ListItem>
-
-        <ListItem button>
-          <ListItemIcon sx={{ color: "#fff", minWidth: 40 }}>
-            <VerifiedUser />
-          </ListItemIcon>
-          {isExpanded && <ListItemText primary="Verify" />}
-        </ListItem>
-
-        <ListItem button>
-          <ListItemIcon sx={{ color: "#fff", minWidth: 40 }}>
-            <Login />
-          </ListItemIcon>
-          {isExpanded && <ListItemText primary="Login" />}
-        </ListItem>
+        {/* Sidebar Items */}
+        <SidebarItem icon={<Home />} text="Home" isExpanded={isExpanded} />
+        <SidebarItem icon={<VerifiedUser />} text="Verify" isExpanded={isExpanded} />
+        <SidebarItem icon={<Login />} text="Login" isExpanded={isExpanded} />
+        
+        {/* Adding Profile Sidebar Item */}
+        <SidebarItem icon={<Person />} text="Profile" isExpanded={isExpanded} />
       </List>
     </Drawer>
   );
