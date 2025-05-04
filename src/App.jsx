@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Correct component imports
 import HomePage from "./pages/HomePage";
 import LoginPage from './pages/LoginPage';
+import CertificateUploader from "./pages/VerifyCertificatePage";
 const App = () => {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
@@ -28,6 +29,9 @@ const App = () => {
           </Routes>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+          </Routes>
+          <Routes>
+            <Route path="/verify" element={<CertificateUploader />} />
           </Routes>
         </div>
       </div>
