@@ -19,14 +19,12 @@ import {
 } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 
-
 const Sidebar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [isOpen, setIsOpen] = useState(!isMobile);
   const location = useLocation();
 
-  // Handle hover effect for desktop
   const handleHover = (open) => {
     if (!isMobile) {
       setIsOpen(open);
@@ -34,11 +32,7 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    if (isMobile) {
-      setIsOpen(false);
-    } else {
-      setIsOpen(false); // Start collapsed on desktop
-    }
+    setIsOpen(false); // Always start collapsed
   }, [isMobile]);
 
   const menuItems = [
@@ -51,16 +45,18 @@ const Sidebar = () => {
   return (
     <>
       {isMobile && (
-        <IconButton 
+        <IconButton
           onClick={() => setIsOpen(!isOpen)}
-          sx={{ 
-            position: 'fixed',
+          sx={{
+            position: "fixed",
             left: 16,
             top: 16,
             zIndex: 1201,
-            color: '#FFFFFF',
-            bgcolor: '#4A148C',
-            '&:hover': { bgcolor: '#6A1B9A' }
+            color: "#FFFFFF",
+            background: "linear-gradient(45deg, #6a1b9a, #9c27b0)",
+            "&:hover": {
+              background: "linear-gradient(45deg, #7b1fa2, #ba68c8)"
+            }
           }}
         >
           <Menu />
@@ -76,15 +72,15 @@ const Sidebar = () => {
         PaperProps={{
           sx: {
             width: isOpen ? 240 : 72,
-            transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            bgcolor: '#4a148c',
-            color: '#FFFFFF',
-            overflowX: 'hidden',
-            borderRight: 'none'
+            transition: "width 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            background: "linear-gradient(160deg, #6a1b9a, #8e24aa)",
+            color: "#FFFFFF",
+            overflowX: "hidden",
+            borderRight: "none"
           }
         }}
       >
-        <Box sx={{ p: 2, height: '100%' }}>
+        <Box sx={{ p: 2, height: "100%" }}>
           <List>
             {menuItems.map((item) => (
               <ListItem
@@ -96,25 +92,28 @@ const Sidebar = () => {
                   borderRadius: 2,
                   mb: 1,
                   px: 2,
-                  transition: 'all 0.2s ease',
-                  bgcolor: location.pathname === item.path ? '#6A1B9A' : 'transparent',
-                  '&:hover': {
-                    bgcolor: '#aa00ff',
-                    transform: 'translateX(5px)'
+                  transition: "all 0.2s ease",
+                  background:
+                    location.pathname === item.path
+                      ? "linear-gradient(45deg, #7b1fa2, #ba68c8)"
+                      : "transparent",
+                  "&:hover": {
+                    background: "linear-gradient(90deg, #8e24aa, #ce93d8)",
+                    transform: "translateX(5px)"
                   }
                 }}
               >
-                <ListItemIcon sx={{ color: 'white', minWidth: 40 }}>
+                <ListItemIcon sx={{ color: "white", minWidth: 40 }}>
                   {item.icon}
                 </ListItemIcon>
                 {isOpen && (
-                  <ListItemText 
-                    primary={item.text} 
-                    primaryTypographyProps={{ 
+                  <ListItemText
+                    primary={item.text}
+                    primaryTypographyProps={{
                       sx: {
                         fontWeight: 500,
                         letterSpacing: 0.5,
-                        color: 'white'
+                        color: "white"
                       }
                     }}
                   />
